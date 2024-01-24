@@ -1,15 +1,15 @@
-calcularDescuento=function(monto, porcentajeDEscuento){
-    let desscuento;
+calcularDescuento=function(monto, porcentajeDescuento){
+    let descuento;
 
-    desscuento= (monto * porcentajeDEscuento)/ 100;
+    descuento= (monto*porcentajeDescuento)/100;
 
-    return desscuento;
+    return descuento;
 }
 
 calcularIva= function(monto){
     let iva;
 
-    iva= monto/1.21;
+    iva= monto/0.12;
     return iva;
 
 }

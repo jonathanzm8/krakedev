@@ -15,6 +15,8 @@ saludar= function(){
 
     mostrarImagen("imgSaludo","./imagenes/saludo.gif")
 
+    mostraTExtoEnCaja("txtNombre", " ")
+
 
 }
 
@@ -24,12 +26,18 @@ mostrarImagen=function(idcomponete,rutaImagen){
     componente.src=rutaImagen;
 }
 
-
 mostraTExto= function(idcomponete, mensaje){
     let componente
     componente=document.getElementById(idcomponete);
     componente.innerText=mensaje;
 }
+
+mostraTExtoEnCaja= function(idcomponete, mensaje){
+    let componente
+    componente=document.getElementById(idcomponete);
+    componente.value=mensaje;
+}
+
 
 
 recuperarTexto=function(idcomponete){

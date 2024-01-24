@@ -9,7 +9,7 @@ calcularDescuento=function(monto, porcentajeDescuento){
 calcularIva= function(monto){
     let iva;
 
-    iva= monto/0.12;
+    iva= monto*0.12;
     return iva;
 
 }

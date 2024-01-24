@@ -13,7 +13,15 @@ saludar= function(){
 
     mostraTExto("lblResultado", mensaje)
 
+    mostrarImagen("imgSaludo","./imagenes/saludo.gif")
 
+
+}
+
+mostrarImagen=function(idcomponete,rutaImagen){
+    let componente;
+    componente= document.getElementById(idcomponete);
+    componente.src=rutaImagen;
 }
 
 

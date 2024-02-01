@@ -1,0 +1,47 @@
+.contenido{
+ 
+}
+.titulo{
+    margin-left: 300px;
+}
+
+.imagenResultado{
+    
+    padding-left: 10px;
+}
+
+.principal{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagenes{
+    background-color: brown;
+    display: flex;
+   padding: 10px;
+
+}
+
+.resultado{
+    display: flex;
+    
+    flex-direction: column;
+
+    justify-content: end;
+}
+
+.resultado1{
+    color: rgb(251, 17, 17);
+    
+  
+}
+
+.limpiar{
+    background-color: rgb(130, 130, 215);
+    margin-left: 500px;
+    padding: 10px;
+   margin-top: 10px;
+    
+}

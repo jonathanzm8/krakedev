@@ -4,7 +4,8 @@ ejecutarValidacion = function () {
 
     password = recuperarTexto("txtPassword")
 
-    validarPassword(password);
+    validado=validarPassword(password,);
+    mostrarTexto("lblResultado",validado)
 
 
 
@@ -12,46 +13,60 @@ ejecutarValidacion = function () {
 }
 
 
-
-
 validarPassword = function (password) {
+    let mensajeError = ""
+    let letraPosicion
 
+    let letraMayuscula= false;
+    let digito= false;
+
+    let caracterEspecial= false;
     if (password.length >= 8 && password.length <= 16) {
-        valido= false
 
-
-        let letra;
-
-
-        for (let posicion = 0; posicion < password.length; posicion++) {
-
-            letra = password.charAt(posicion)
-
-            if (esMayuscula(letra.charCodeAt(posicion))) { 
-            
-
-                return true;
-        
-            } else if(esDigito(letra)){
-
-                return true;
-                
-        
-            }else if (esCaracterEspecial(letra)) {
-                return true;
-
-
-
-            }
-          
-        }
-
-        return valido
-
-    } else {
-        console.log("debetern minimos 8 caracteres y maximo 16 caracteres")
+    }else{
+        mensajeError = "la contraseña debe tener como nimimo 8 y maximo 16 caracteres "
     }
 
+    for(let posicion= 0; posicion< password.length; posicion++){
+        letraPosicion= password.charCodeAt(posicion)
+        esMayuscula(letraPosicion)
+        if(esMayuscula(letraPosicion)){
+        
+            letraMayuscula= true
+        }
+    }
+
+    for(let posicion= 0; posicion< password.length; posicion++){
+        letraPosicion= password.charCodeAt(posicion)
+        esDigito(letraPosicion)
+        if(esDigito(letraPosicion)){
+            digito= true
+        }
+    }
+
+    for(let posicion= 0; posicion< password.length; posicion++){
+        letraPosicion= password.charCodeAt(posicion)
+        esCaracterEspecial(letraPosicion)
+        if(esCaracterEspecial(letraPosicion)){
+            caracterEspecial= true
+        }
+    }
+
+  
+    if(!letraMayuscula){
+        mensajeError += "de tener al menos una letra mayuscula"
+
+    }else if(!digito){
+        mensajeError += "de tener un digito"
+
+    }else if(!caracterEspecial){
+        mensajeError += "de tener un caracter especial (*, -, _ )"
+
+    }
+
+    return mensajeError
+
+    
 }
 
 

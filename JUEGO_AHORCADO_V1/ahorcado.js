@@ -115,7 +115,6 @@ ingresarLetra = function () {
         }
 
 
-
     } else {
         alert("solo se aceptan letras mayusculas")
 

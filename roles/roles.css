@@ -78,7 +78,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-tbody tr:nth-child(odd) {
+/* tbody tr:nth-child(odd) {
     background-color: #908efc;
   }
   
@@ -99,7 +99,26 @@ tbody tr:nth-child(odd) {
   }
   .areaTabla{
     margin-top: 20px;
-  }
+  } */
+
+.areaTabla{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    padding: 50px;
+  
+}
+
+th, td {
+    /* border: solid 1px black; */
+    padding: 10px;
+    border: solid 1px black;
+  
+ }
+
+ th{
+    background-color: #217023;
+ }
 .estiloBoton:hover {
     background-color:white; 
     color: #217023;

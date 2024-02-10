@@ -190,7 +190,18 @@ ejecutarBusqueda = function () {
 
 }
 
+limpiar= function(){
+    mostrarTexto("txtCedula","");
+    mostrarTexto("txtNombre","");
+    mostrarTexto("txtApellido","");
+    mostrarTexto("txtSueldo","");
+    deshabilitarCampos();
+    esNuevo= false;
 
+
+}
+
+//  VALIDADCIONES ------------------------------------------------------------------------------------
 
 validarCedula = function (cedula, idComponenteError) {
 

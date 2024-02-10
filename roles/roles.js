@@ -117,6 +117,8 @@ guardar = function () {
 
         }
 
+        /// PARA MIDIFICAR 
+
         if(esNuevo== false){
             let buscado, modificado;
             buscado=buscarEmpleado(cedula);
@@ -191,12 +193,14 @@ ejecutarBusqueda = function () {
 }
 
 limpiar= function(){
-    mostrarTexto("txtCedula","");
-    mostrarTexto("txtNombre","");
-    mostrarTexto("txtApellido","");
-    mostrarTexto("txtSueldo","");
-    deshabilitarCampos();
+    mostrarTextoEnCaja("txtCedula","");
+    mostrarTextoEnCaja("txtNombre","");
+    mostrarTextoEnCaja("txtApellido","");
+    mostrarTextoEnCaja("txtSueldo","");
     esNuevo= false;
+    deshabilitarCampos();
+
+   
 
 
 }

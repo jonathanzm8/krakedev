@@ -113,6 +113,8 @@ guardar = function () {
 
         }
 
+        deshabilitarCampos();
+
     
 
 
@@ -128,7 +130,7 @@ validarCedula = function (cedula, idComponenteError) {
 
     let error = false;
 
-    if (cedula == "") {
+    if (cedula == "" ) {
 
         mostrarTexto(idComponenteError, "campo Obligatorio ")
         
@@ -152,7 +154,7 @@ validarCedula = function (cedula, idComponenteError) {
 
     }
 
-    if (error == false) {
+    if (error==false) {
         mostrarTexto(idComponenteError, "")
 
     }
@@ -175,22 +177,22 @@ validarNombre = function (nombre, idComponenteError) {
     }
 
     if (nombre != nombre.toUpperCase()) {
-        mostrarTexto(idComponenteError, "Ingrese MAYUSCULAS ")
+        mostrarTexto("lblErrorNombre", "Ingrese MAYUSCULAS ")
         error = true;
 
 
     }
-    if (nombre.length <= 3) {
-        mostrarTexto = (idComponenteError, "Ingrese al menos 3 caracteres")
+    if (nombre.length < 3) {
+        mostrarTexto(idComponenteError, "Ingrese al menos 3 caracteres")
         error = true;
 
     }
 
-    // if (error == false) {
-    //     mostrarTexto(idComponenteError, "")
+    if (error == false) {
+        mostrarTexto(idComponenteError, "")
 
 
-    // }
+    }
 
     return !error;
 
@@ -224,11 +226,11 @@ validarApellido = function (apellido, idComponenteError) {
         error = true;
 
     }
-    // if (error == false) {
-    //     mostrarTexto(idComponenteError, "")
+    if (error == false) {
+        mostrarTexto(idComponenteError, "")
 
 
-    // }
+    }
 
     return !error;
 
@@ -239,7 +241,7 @@ validarSueldo = function (sueldo,idComponenteError) {
 
     let error = false;
 
-    if (sueldo == "") {
+    if (isNaN(sueldo)) {
 
         mostrarTexto(idComponenteError, "campo obligatorio ")
 
@@ -255,11 +257,11 @@ validarSueldo = function (sueldo,idComponenteError) {
 
 
     }
-    // if (error == false) {
-    //     mostrarTexto(idComponenteError, "")
+    if (error == false) {
+        mostrarTexto(idComponenteError, "")
 
 
-    // }
+    }
 
 
 
@@ -273,6 +275,14 @@ validarSueldo = function (sueldo,idComponenteError) {
 
 // ´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
 
+deshabilitarCampos= function(){
+    ocultarComponente("txtCedula");
+    ocultarComponente("txtNombre");
+    ocultarComponente("txtApellido");
+    ocultarComponente("txtSueldo");
+    ocultarComponente("btnGuardar");
+
+}
 mostraOpcionEmpleado = function () {
 
     mostrarComponente("divEmpleado");

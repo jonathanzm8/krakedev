@@ -35,6 +35,9 @@ recuperarFloat = function(idComponente){
     return valorFlotante;
  }
 
+
+
+
 mostrarComponente = function(idComponente){
     document.getElementById(idComponente).style.display = "block";
 }

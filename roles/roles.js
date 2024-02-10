@@ -82,40 +82,72 @@ agregarEmpleado = function (empleado) {
 
 guardar = function () {
 
-    let cedula,nombre, apellido,  sueldo;
+    let cedula, nombre, apellido, sueldo;
 
     cedula = recuperarTexto("txtCedula");
     nombre = recuperarTexto("txtNombre");
     apellido = recuperarTexto("txtApellido");
     sueldo = recuperarFloat("txtSueldo");
 
-    if(validarCedula(cedula,"lblErrorCedula") && validarNombre(nombre,"lblErrorNombre") && validarApellido(apellido,"lblErrorApellido")&& validarSueldo(sueldo,"lblErrorSueldo")){
-        
-        if(esNuevo== true){
-            let empleado= [];
+    if (validarCedula(cedula, "lblErrorCedula") && validarNombre(nombre, "lblErrorNombre") && validarApellido(apellido, "lblErrorApellido") && validarSueldo(sueldo, "lblErrorSueldo")) {
+
+        if (esNuevo == true) {
+            let empleado = [];
             let agregado;
 
-            empleado.cedula= cedula;
-            empleado.nombre= nombre;
-            empleado.apellido= apellido;
-            empleado.sueldo= sueldo;
+            empleado.cedula = cedula;
+            empleado.nombre = nombre;
+            empleado.apellido = apellido;
+            empleado.sueldo = sueldo;
 
-            agregado=agregarEmpleado(empleado);
+            agregado = agregarEmpleado(empleado);
 
-            if(agregado== true){
-                alert=("cliente agredado exitosamente")
+            if (agregado == true) {
+                // alert = ("cliente agredado exitosamente")
                 mostarEmpoleados();
-            }else{
+                esNuevo= false;
+            } else {
                 alert("ya existe el empleado con la cedula " + empleado.cedula)
-    
+
             }
-    
+
+          
+        
+
+
+        }
+
+        if(esNuevo== false){
+            let buscado, modificado;
+            buscado=buscarEmpleado(cedula);
+
+            cedula = recuperarTexto("txtCedula");
+            nombre = recuperarTexto("txtNombre");
+            apellido = recuperarTexto("txtApellido");
+            sueldo = recuperarFloat("txtSueldo");
+
+            modificado=[];
+
+
+            modificado.cedula= cedula;
+            modificado.nombre= nombre;
+            modificado.apellido= apellido;
+            modificado.sueldo= sueldo
+             
+            
+            buscado.nombre= modificado.nombre;
+            buscado.apellido= modificado.apellido;
+            buscado.sueldo= modificado.sueldo;
+
+            alert("EMPLEADO MODIFICADO EXITOSAMENTE")
+
+            mostarEmpoleados();
 
         }
 
         deshabilitarCampos();
 
-    
+
 
 
     }
@@ -124,24 +156,58 @@ guardar = function () {
 }
 
 
+ejecutarBusqueda = function () {
+
+    let busquedaCedula, resultado;
+    busquedaCedula = recuperarTexto("txtBusquedaCedula");
+
+    resultado = buscarEmpleado(busquedaCedula);
+
+    if (resultado != null) {
+        mostrarComponente("txtCedula");
+
+        mostrarComponente("txtNombre");
+        mostrarComponente("txtApellido");
+        mostrarComponente("txtSueldo");
+        mostrarComponente("btnGuardar");
+
+
+        mostrarTextoEnCaja("txtCedula", resultado.cedula);
+        mostrarTextoEnCaja("txtNombre", resultado.nombre);
+        mostrarTextoEnCaja("txtApellido", resultado.apellido);
+
+        mostrarTextoEnCaja("txtSueldo", resultado.sueldo);
+
+
+
+    } else {
+        alert("usuario no existe")
+    }
+
+
+
+
+
+}
+
 
 
 validarCedula = function (cedula, idComponenteError) {
 
     let error = false;
 
-    if (cedula == "" ) {
+    if (cedula == "") {
 
         mostrarTexto(idComponenteError, "campo Obligatorio ")
-        
+
         error = true;
 
     }
 
-    if (cedula.length < 10 || cedula.length>10) {
+    if (cedula.length < 10 || cedula.length > 10) {
 
         mostrarTexto(idComponenteError, "ingrese 10 caracteres ")
-        
+
         error = true;
 
     }
@@ -154,7 +220,7 @@ validarCedula = function (cedula, idComponenteError) {
 
     }
 
-    if (error==false) {
+    if (error == false) {
         mostrarTexto(idComponenteError, "")
 
     }
@@ -204,11 +270,11 @@ validarApellido = function (apellido, idComponenteError) {
 
 
     let error = false;
-    
+
 
     if (apellido == "") {
 
-       
+
         mostrarTexto(idComponenteError, "campo obligatorio ")
 
         error = true;
@@ -217,7 +283,7 @@ validarApellido = function (apellido, idComponenteError) {
 
     if (apellido != apellido.toUpperCase()) {
         mostrarTexto(idComponenteError, "Ingrese MAYUSCULAS  ")
-       
+
         error = true;
 
     }
@@ -237,7 +303,7 @@ validarApellido = function (apellido, idComponenteError) {
 
 }
 
-validarSueldo = function (sueldo,idComponenteError) {
+validarSueldo = function (sueldo, idComponenteError) {
 
     let error = false;
 
@@ -275,7 +341,7 @@ validarSueldo = function (sueldo,idComponenteError) {
 
 // ´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´
 
-deshabilitarCampos= function(){
+deshabilitarCampos = function () {
     ocultarComponente("txtCedula");
     ocultarComponente("txtNombre");
     ocultarComponente("txtApellido");

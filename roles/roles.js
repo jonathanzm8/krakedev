@@ -4,6 +4,8 @@ let empleados = [
     { cedula: "1109856432", nombre: "Jonathan", apellido: "Morocho", sueldo: 850.0 }
 ]
 
+let esNuevo= false
+
 
 mostarEmpoleados = function () {
     let cmpTable, contenidoTabla, element;
@@ -11,15 +13,16 @@ mostarEmpoleados = function () {
     cmpTable = document.getElementById("tablaEmpleados")
 
     contenidoTabla = "<table> <tr>" +
-        "<th>CEDULA</th>"+
-        "<th>NOMBRE</th>"+
-        "<th>APELLIDO</th>"+
-        "<th>SUELDO</th>"+
-        "</tr>"
+    "<th>CEDULA</th>"+
+    "<th>NOMBRE</th>"+
+    "<th>APELLIDO</th>"+
+    "<th>SUELDO</th>"+
+    "</tr>"
 
     for(let i= 0; i< empleados.length; i++){
         element= empleados[i];
         contenidoTabla +=
+
         "<tr>"+
         "<td>"+ element.cedula +"</td>" +
         "<td>"+ element.nombre +"</td>" +
@@ -27,9 +30,20 @@ mostarEmpoleados = function () {
         "<td>"+ element.sueldo +"</td>" +
         "</tr>"
     }
+    
 
     contenidoTabla += "</table>"
     cmpTable.innerHTML = contenidoTabla;
+
+}
+
+ejecutarNuevo=function(){
+    mostrarComponente("txtCedula");
+    mostrarComponente("txtNombre");
+    mostrarComponente("txtApellido");
+    mostrarComponente("txtSueldo");
+    mostrarComponente("btnGuardar");
+    esNuevo= true;
 
 }
 
@@ -41,6 +55,14 @@ mostraOpcionEmpleado = function () {
     mostrarComponente("divEmpleado");
     ocultarComponente("divRol");
     ocultarComponente("divResumen");
+
+    ocultarComponente("txtCedula");
+    ocultarComponente("txtNombre");
+    ocultarComponente("txtApellido");
+    ocultarComponente("txtSueldo");
+    ocultarComponente("btnGuardar");
+
+
 
     mostarEmpoleados();
 

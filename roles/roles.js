@@ -105,43 +105,43 @@ guardar = function () {
             if (agregado == true) {
                 // alert = ("cliente agredado exitosamente")
                 mostarEmpoleados();
-                esNuevo= false;
+                esNuevo = false;
             } else {
                 alert("ya existe el empleado con la cedula " + empleado.cedula)
 
             }
 
-          
-        
+
+
 
 
         }
 
         /// PARA MIDIFICAR 
 
-        if(esNuevo== false){
+        if (esNuevo == false) {
             let buscado, modificado;
-            buscado=buscarEmpleado(cedula);
+            buscado = buscarEmpleado(cedula);
 
             cedula = recuperarTexto("txtCedula");
             nombre = recuperarTexto("txtNombre");
             apellido = recuperarTexto("txtApellido");
             sueldo = recuperarFloat("txtSueldo");
 
-            modificado=[];
+            modificado = [];
 
 
-            modificado.cedula= cedula;
-            modificado.nombre= nombre;
-            modificado.apellido= apellido;
-            modificado.sueldo= sueldo
-             
-            
-            buscado.nombre= modificado.nombre;
-            buscado.apellido= modificado.apellido;
-            buscado.sueldo= modificado.sueldo;
+            modificado.cedula = cedula;
+            modificado.nombre = nombre;
+            modificado.apellido = apellido;
+            modificado.sueldo = sueldo
 
-            alert("EMPLEADO MODIFICADO EXITOSAMENTE")
+
+            buscado.nombre = modificado.nombre;
+            buscado.apellido = modificado.apellido;
+            buscado.sueldo = modificado.sueldo;
+
+            // alert("EMPLEADO MODIFICADO EXITOSAMENTE")
 
             mostarEmpoleados();
 
@@ -192,18 +192,88 @@ ejecutarBusqueda = function () {
 
 }
 
-limpiar= function(){
-    mostrarTextoEnCaja("txtCedula","");
-    mostrarTextoEnCaja("txtNombre","");
-    mostrarTextoEnCaja("txtApellido","");
-    mostrarTextoEnCaja("txtSueldo","");
-    esNuevo= false;
+limpiar = function () {
+    mostrarTextoEnCaja("txtCedula", "");
+    mostrarTextoEnCaja("txtNombre", "");
+    mostrarTextoEnCaja("txtApellido", "");
+    mostrarTextoEnCaja("txtSueldo", "");
+    esNuevo = false;
     deshabilitarCampos();
 
-   
+
 
 
 }
+
+//  ROLES --------------------------------------------------------------------------------------------------------
+
+buscarPorRol = function () {
+    let busqueda, encontrado;
+    busqueda = recuperarTexto("txtBusquedaCedulaRol");
+    encontrado = buscarEmpleado(busqueda);
+    if (encontrado != null) {
+        mostrarComponente("infoCedula");
+        mostrarComponente("infoSueldo");
+        mostrarComponente("infoNombre");
+
+        mostrarTexto("infoCedula", encontrado.cedula);
+        mostrarTexto("infoNombre", encontrado.nombre + " " + encontrado.apellido);
+        mostrarTexto("infoSueldo", encontrado.sueldo);
+    }
+    else {
+        alert("el empleado no existe")
+    }
+}
+
+
+//  CALCULAR APORTE EMPLEADO------------------------------------
+
+calcularAporteEmpleado = function (sueldo) {
+
+    let aporte;
+
+    aporte = (sueldo * 9.45) / 100;
+
+    return aporte;
+
+
+
+}
+
+calcularVAlorApagar = function (sueldo, aporte, descuento) {
+    let valorApagar
+
+    valorApagar = (sueldo - aporte) - descuento;
+
+    return valorApagar;
+
+}
+
+calcularRol = function () {
+    let sueldo, descuento;
+    sueldo = recuperarTextoDiv("infoSueldo");
+    descuento = recuperarFloat("txtDescuentos");
+
+    if (descuento >= 0 && descuento <= sueldo) {
+        let resultadoAporte, valorPago;
+        resultadoAporte = calcularAporteEmpleado(sueldo);
+        mostrarTexto("infoIESS", resultadoAporte);
+
+        valorPago = calcularVAlorApagar(sueldo, descuento, resultadoAporte);
+        mostrarTexto("infoPago", valorPago);
+
+    }
+    else{
+        mostrarTexto("lblErrorDescuentos", "en descuento ingrese un valor entre 0 y no mayor al sueldo del empleado");
+        
+
+}
+}
+
+
+
+
+
 
 //  VALIDADCIONES ------------------------------------------------------------------------------------
 
